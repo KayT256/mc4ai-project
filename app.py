@@ -16,5 +16,6 @@ def main():
   with tab3:
     slider = st.slider('Number of groups', 2, 5, 3)
     score_groups(slider)
+    
 
 main()
