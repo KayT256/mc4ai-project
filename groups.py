@@ -14,3 +14,6 @@ def score_groups(a):
     X = np.stack((df['S6'], df['S10'], df['GPA'])).T
     kmeans.fit(X)
     st.plotly_chart(px.scatter_3d(df, x = 'S6', y = 'S10', z = 'GPA', color = kmeans.labels_))
+    for i in range(a):
+        st.write(f'Group {i+1}: highest GPA ', df['GPA'][kmeans.labels_==i].max(), ', lowest GPA ', df['GPA'][kmeans.labels_==i].min(), ', average: ', np.round(df['GPA'][kmeans.labels_==i].mean(), decimals = 1))
+        st.write(df[['NAME', 'CLASS', 'GPA']][kmeans.labels_==i])
