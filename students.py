@@ -5,3 +5,4 @@ import pandas as pd
 df = pd.read_csv('py4ai-score.csv')
 def PY4AI_classes():
   st.plotly_chart(px.pie(df, names="PYTHON-CLASS", title='Percentages of students per PY4AI-COTAI class'))
+  st.success('Comment: The distribution of students in each class is nearly equal.')
