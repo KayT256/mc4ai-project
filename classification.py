@@ -27,6 +27,8 @@ x2 = -(w1*x1 + bias)/w2
 
 def two_features():
     fig = plt.figure() 
+    plt.xlabel('AVERAGE')
+    plt.ylabel('S6 (Midterm test)')
     plt.plot(x1, x2)
     plt.scatter(df['AVERAGE'][df['PASS/FAIL'] == 'PASS'], df['S6'][df['PASS/FAIL'] == 'PASS'])
     plt.scatter(df['AVERAGE'][df['PASS/FAIL'] == 'FAIL'], df['S6'][df['PASS/FAIL'] == 'FAIL'])
