@@ -2,7 +2,7 @@ import streamlit as st
 from students import PY4AI_classes
 from scores import session_scores
 from groups import score_groups
-from classification import two_features
+from classification import three_features, two_features
 def main():
   st.title('PY4AI CLASS SCORES')
   tab1, tab2, tab3, tab4 = st.tabs(['Lists', 'Charts', 'Groups', 'Classification'])
@@ -21,6 +21,7 @@ def main():
     features = st.radio('Number of features', (2, 3), horizontal=True)
     if features == 2:
       two_features()
-    
+    else:
+      three_features()
 
 main()
