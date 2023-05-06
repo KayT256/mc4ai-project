@@ -1,25 +1,26 @@
 import streamlit as st
 import pandas as pd
+import numpy as np
 
 df = pd.read_csv('py4ai-score.csv')
 
 def specialized_class(row):
     if 'CV' in row['CLASS']:
         return 'Literature'
-    elif 'CT' in row['CLASS']:
-        return 'Math'
+    elif 'CTIN' in row['CLASS']:
+        return 'IT'
     elif 'CL' in row['CLASS']:
         return 'Physics'
     elif 'CH' in row['CLASS']:
         return 'Chemistry'
     elif 'CA' in row['CLASS']:
         return 'English'
-    elif 'CTIN' in row['CLASS']:
-        return 'IT'
-    elif 'CSD' in row['CLASS']:
-        return 'History and Geography'
     elif 'CTRN' in row['CLASS']:
         return 'Chinese and Japanese'
+    elif 'CSD' in row['CLASS']:
+        return 'History and Geography'
+    elif 'CT' in row['CLASS']:
+        return 'Math'
     elif 'TH' in row['CLASS'] or 'SN' in row['CLASS']:
         return 'Bilingual'
     else:
@@ -101,8 +102,39 @@ def selections():
     elif session == 'Afternoon':
         selected = selected[(selected['PYTHON-CLASS'] == '114-C') | (selected['PYTHON-CLASS'] == '115-C')]
     
-    st.write(selected[['NAME', 'GENDER', 'CLASS', 'PYTHON-CLASS', 'S1', 'S2', 'S3', 'S4', 'S5', 'S6', 'S7', 'S8', 'S9', 'S10', 'BONUS', 'GPA', 'REG-MC4AI']])
 
+    if literature == False:
+        selected = selected.drop(np.where(selected['SPECIALIZED CLASS'] == 'Literature')[0])
+    if math == False:
+        selected = selected.drop(np.where(selected['SPECIALIZED CLASS'] == 'Math')[0])
+    if physics == False:
+        selected = selected.drop(np.where(selected['SPECIALIZED CLASS'] == 'Physics')[0])
+    if chemistry == False:
+        selected = selected.drop(np.where(selected['SPECIALIZED CLASS'] == 'Chemistry')[0])
+    if english == False:
+        selected = selected.drop(np.where(selected['SPECIALIZED CLASS'] == 'English')[0])
+    if it == False:
+        selected = selected.drop(np.where(selected['SPECIALIZED CLASS'] == 'IT')[0])
+    if history_geography == False:
+        selected = selected.drop(np.where(selected['SPECIALIZED CLASS'] == 'History and Geography')[0])
+    if chinese_japanese == False:
+        selected = selected.drop(np.where(selected['SPECIALIZED CLASS'] == 'Chinese and Japanese')[0])
+    if bilingual == False:
+        selected = selected.drop(np.where(selected['SPECIALIZED CLASS'] == 'Bilingual')[0])
+    if others == False:
+        selected = selected.drop(np.where(selected['SPECIALIZED CLASS'] == 'Others')[0])
 
-def info():
-    st.write('Number of students: ', len(df))
+    selected['BONUS'].fillna(0, inplace=True)
+    selected['S1'].fillna(0, inplace=True)
+    selected['S2'].fillna(0, inplace=True)
+    selected['S3'].fillna(0, inplace=True)
+    selected['S4'].fillna(0, inplace=True)
+    selected['S5'].fillna(0, inplace=True)
+    selected['S6'].fillna(0, inplace=True)
+    selected['S7'].fillna(0, inplace=True)
+    selected['S8'].fillna(0, inplace=True)
+    selected['S9'].fillna(0, inplace=True)
+    selected['S10'].fillna(0, inplace=True)
+    selected['REG-MC4AI'].fillna('N', inplace=True)
+    st.write(selected[['NAME', 'GENDER', 'CLASS', 'PYTHON-CLASS', 'S1', 'S2', 'S3', 'S4', 'S5', 'S6', 'S7', 'S8', 'S9', 'S10', 'BONUS', 'GPA', 'REG-MC4AI', 'SPECIALIZED CLASS']])
+
