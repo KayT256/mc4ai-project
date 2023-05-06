@@ -1,6 +1,5 @@
 import plotly.express as px
 import streamlit as st
-import pandas as pd
 from list import add_specialized_class, add_grade
 
 df = add_specialized_class()
