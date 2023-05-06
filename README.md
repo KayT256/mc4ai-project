@@ -19,3 +19,7 @@
 | Clustering | Trát Triều Khang | 06/05/23 |
 | Regression | Trát Triều Khang | 06/05/23 |
 | Classify | Trát Triều Khang | 06/05/23 |
+
+# Sản phẩm
+- Video: https://drive.google.com/file/d/170vMc80Mr8ti53kbTp8Oq6quqe-WYaDb/view?usp=sharing
+- Streamlit: https://kayt256-mc4ai-project-app-h18jh4.streamlit.app/
