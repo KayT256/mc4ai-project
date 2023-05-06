@@ -75,15 +75,8 @@ def selections():
     with col5:
         bilingual = st.checkbox('Bilingual', True)
         others = st.checkbox('Others', True)
-
-    if male == True and female == True:
-        selected = df
-    elif male == True:
-        selected = df[df['GENDER'] == 'M']
-    elif female == True:
-        selected = df[df['GENDER'] == 'F']
-    else:
-        st.error('Please select a Gender!')
+    
+    selected = df
 
     if grade == 'Grade 10':
         selected = selected[selected['GRADE'] == 10]
@@ -101,7 +94,13 @@ def selections():
         selected = selected[(selected['PYTHON-CLASS'] == '114-S') | (selected['PYTHON-CLASS'] == '115-S')]
     elif session == 'Afternoon':
         selected = selected[(selected['PYTHON-CLASS'] == '114-C') | (selected['PYTHON-CLASS'] == '115-C')]
-    
+
+    if male == False:
+        drop = selected['GENDER'] == 'M'
+        selected = selected[~drop]
+    if female == False:
+        drop = selected['GENDER'] == 'F'
+        selected = selected[~drop]
 
     if literature == False:
         drop = selected['SPECIALIZED CLASS'] == 'Literature'
