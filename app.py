@@ -19,7 +19,7 @@ def main():
       specialized_class()
       gender()
     with tab22:
-      sessions = st.radio('Sessions', ('S1', 'S2', 'S3', 'S4', 'S5', 'S6', 'S7', 'S8', 'S9', 'S10', 'GPA'), horizontal=True)
+      sessions = st.radio('Sessions', ('S1', 'S2', 'S3', 'S4', 'S5', 'S6', 'S7', 'S8', 'S9', 'S10', 'GPA'), 10, horizontal=True)
       session_scores(sessions)
   with tab3:
     slider = st.slider('Number of groups', 2, 5, 3)
