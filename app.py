@@ -4,14 +4,14 @@ from students import PY4AI_classes
 from scores import session_scores
 from groups import score_groups
 from classification import three_features, two_features
-from list import selections, info
+from list import selections
 
 def main():
   st.title('PY4AI CLASS SCORES')
   tab1, tab2, tab3, tab4 = st.tabs(['Lists', 'Charts', 'Groups', 'Classification'])
   with tab1:
     selections()
-    info()
+
   with tab2:
     tab21, tab22 = st.tabs(['Number of students', 'Scores'])
     with tab21:
