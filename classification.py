@@ -8,7 +8,7 @@ from sklearn.linear_model import LogisticRegression
 df = pd.read_csv('py4ai-score.csv')
 df.fillna(0, inplace=True)
 
-df['AVERAGE'] = [df.loc[i][['S1', 'S2', 'S3', 'S4', 'S5', 'S7', 'S8', 'S9']].mean() for i in df.index]
+df['S-AVERAGE'] = [df.loc[i][['S1', 'S2', 'S3', 'S4', 'S5', 'S7', 'S8', 'S9']].mean() for i in df.index]
 def pass_fail(row):
         if row['GPA'] >= 6:
             return 'PASS'
@@ -18,7 +18,7 @@ df['PASS/FAIL'] = df.apply(pass_fail, axis=1)
 
 def two_features():
     model = LogisticRegression()
-    model.fit(np.stack((df['AVERAGE'], df['S6'])).T, df['PASS/FAIL'])
+    model.fit(np.stack((df['S-AVERAGE'], df['S6'])).T, df['PASS/FAIL'])
 
     weights = model.coef_[0]
     bias = model.intercept_[0]
@@ -27,16 +27,16 @@ def two_features():
     x1 = np.array([0, 10])
     x2 = -(w1*x1 + bias)/w2
     fig = plt.figure() 
-    plt.xlabel('AVERAGE')
+    plt.xlabel('S-AVERAGE')
     plt.ylabel('S6 (Midterm test)')
     plt.plot(x1, x2)
-    plt.scatter(df['AVERAGE'][df['PASS/FAIL'] == 'PASS'], df['S6'][df['PASS/FAIL'] == 'PASS'])
-    plt.scatter(df['AVERAGE'][df['PASS/FAIL'] == 'FAIL'], df['S6'][df['PASS/FAIL'] == 'FAIL'])
+    plt.scatter(df['S-AVERAGE'][df['PASS/FAIL'] == 'PASS'], df['S6'][df['PASS/FAIL'] == 'PASS'])
+    plt.scatter(df['S-AVERAGE'][df['PASS/FAIL'] == 'FAIL'], df['S6'][df['PASS/FAIL'] == 'FAIL'])
     st.pyplot(fig)
-    st.write('Score: ', np.round(model.score(np.stack((df['AVERAGE'], df['S6'])).T, df['PASS/FAIL']), decimals=2))
+    st.write('Score: ', np.round(model.score(np.stack((df['S-AVERAGE'], df['S6'])).T, df['PASS/FAIL']), decimals=2))
 
 def three_features():
-    X = df[['AVERAGE','S6','S10']].values.copy()
+    X = df[['S-AVERAGE','S6','S10']].values.copy()
     y = df['PASS/FAIL'].values.copy()  
     model = LogisticRegression()
     model.fit(X,y)
