@@ -51,7 +51,7 @@ def selections():
         room = st.selectbox('Room', ('All', 'A.114', 'A.115'))
     
     with col4:
-        session = st.selectbox('Session', ('Morning', 'Afternoon'))
+        session = st.selectbox('Session', ('All', 'Morning', 'Afternoon'))
 
     st.write('Specialized Class')
     col1, col2, col3, col4, col5 = st.columns(5)
@@ -91,8 +91,17 @@ def selections():
     elif grade == 'Grade 12':
         selected = selected[selected['GRADE'] == 12]
     
+    if room == 'A.114':
+        selected = selected[(selected['PYTHON-CLASS'] == '114-S') | (selected['PYTHON-CLASS'] == '114-C')]
+    elif room == 'A.115':
+        selected = selected[(selected['PYTHON-CLASS'] == '115-S') | (selected['PYTHON-CLASS'] == '115-C')]
+    
+    if session == 'Morning':
+        selected = selected[(selected['PYTHON-CLASS'] == '114-S') | (selected['PYTHON-CLASS'] == '115-S')]
+    elif session == 'Afternoon':
+        selected = selected[(selected['PYTHON-CLASS'] == '114-C') | (selected['PYTHON-CLASS'] == '115-C')]
+    
     st.write(selected[['NAME', 'GENDER', 'CLASS', 'PYTHON-CLASS', 'S1', 'S2', 'S3', 'S4', 'S5', 'S6', 'S7', 'S8', 'S9', 'S10', 'BONUS', 'GPA', 'REG-MC4AI']])
-
 
 
 def info():
