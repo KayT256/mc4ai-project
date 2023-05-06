@@ -104,25 +104,35 @@ def selections():
     
 
     if literature == False:
-        selected = selected.drop(np.where(selected['SPECIALIZED CLASS'] == 'Literature')[0])
+        drop = selected['SPECIALIZED CLASS'] == 'Literature'
+        selected = selected[~drop]
     if math == False:
-        selected = selected.drop(np.where(selected['SPECIALIZED CLASS'] == 'Math')[0])
+        drop = selected['SPECIALIZED CLASS'] == 'Math'
+        selected = selected[~drop]
     if physics == False:
-        selected = selected.drop(np.where(selected['SPECIALIZED CLASS'] == 'Physics')[0])
+        drop = selected['SPECIALIZED CLASS'] == 'Physics'
+        selected = selected[~drop]
     if chemistry == False:
-        selected = selected.drop(np.where(selected['SPECIALIZED CLASS'] == 'Chemistry')[0])
+        drop = selected['SPECIALIZED CLASS'] == 'Chemistry'
+        selected = selected[~drop]
     if english == False:
-        selected = selected.drop(np.where(selected['SPECIALIZED CLASS'] == 'English')[0])
+        drop = selected['SPECIALIZED CLASS'] == 'English'
+        selected = selected[~drop]
     if it == False:
-        selected = selected.drop(np.where(selected['SPECIALIZED CLASS'] == 'IT')[0])
+        drop = selected['SPECIALIZED CLASS'] == 'IT'
+        selected = selected[~drop]
     if history_geography == False:
-        selected = selected.drop(np.where(selected['SPECIALIZED CLASS'] == 'History and Geography')[0])
+        drop = selected['SPECIALIZED CLASS'] == 'History and Geography'
+        selected = selected[~drop]
     if chinese_japanese == False:
-        selected = selected.drop(np.where(selected['SPECIALIZED CLASS'] == 'Chinese and Japanese')[0])
+        drop = selected['SPECIALIZED CLASS'] == 'Chinese and Japanese'
+        selected = selected[~drop]
     if bilingual == False:
-        selected = selected.drop(np.where(selected['SPECIALIZED CLASS'] == 'Bilingual')[0])
+        drop = selected['SPECIALIZED CLASS'] == 'Bilingual'
+        selected = selected[~drop]
     if others == False:
-        selected = selected.drop(np.where(selected['SPECIALIZED CLASS'] == 'Others')[0])
+        drop = selected['SPECIALIZED CLASS'] == 'Others'
+        selected = selected[~drop]
 
     selected['BONUS'].fillna(0, inplace=True)
     selected['S1'].fillna(0, inplace=True)
