@@ -5,6 +5,7 @@ from scores import session_scores
 from groups import score_groups
 from classification import three_features, two_features
 from list import selections, info
+
 def main():
   st.title('PY4AI CLASS SCORES')
   tab1, tab2, tab3, tab4 = st.tabs(['Lists', 'Charts', 'Groups', 'Classification'])
