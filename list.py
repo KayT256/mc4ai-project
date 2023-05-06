@@ -1,6 +1,5 @@
 import streamlit as st
 import pandas as pd
-import numpy as np
 
 df = pd.read_csv('py4ai-score.csv')
 
@@ -34,9 +33,15 @@ def grade(row):
     else:
         return 12
 
+def add_specialized_class():
+    df['SPECIALIZED CLASS'] = df.apply(specialized_class, axis=1)
+    return df
+def add_grade():
+    df['GRADE'] = df.apply(grade, axis=1)
+    return df
 
-df['SPECIALIZED CLASS'] = df.apply(specialized_class, axis=1)
-df['GRADE'] = df.apply(grade, axis=1)
+add_specialized_class()
+add_grade()
 
 def selections():
     col1, col2, col3, col4 = st.columns(4)

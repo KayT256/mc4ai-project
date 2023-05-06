@@ -1,6 +1,6 @@
 from distutils.log import info
 import streamlit as st
-from students import PY4AI_classes
+from students import PY4AI_classes, specialized_class, gender
 from scores import session_scores
 from groups import score_groups
 from classification import three_features, two_features
@@ -16,6 +16,8 @@ def main():
     tab21, tab22 = st.tabs(['Number of students', 'Scores'])
     with tab21:
       PY4AI_classes()
+      specialized_class()
+      gender()
     with tab22:
       sessions = st.radio('Sessions', ('S1', 'S2', 'S3', 'S4', 'S5', 'S6', 'S7', 'S8', 'S9', 'S10', 'GPA'), horizontal=True)
       session_scores(sessions)
