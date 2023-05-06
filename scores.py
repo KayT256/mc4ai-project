@@ -16,4 +16,4 @@ def session_scores(a):
             - Students from foreign language specialized classes study pretty weakly.
             """
     )
-    
+    st.plotly_chart(px.histogram(df, x = 'SPECIALIZED CLASS', y = a, color = 'GENDER'))
